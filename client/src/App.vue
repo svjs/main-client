@@ -1,10 +1,26 @@
-<template>
-	<v-app>
-	</v-app>
+<template lang="pug">
+	v-app
+		v-app-bar(dense app flat)
+			img.logo(src="@/assets/logo.svg")
+			v-toolbar-title Svjs
+		v-content: v-container(fluid fill-height): router-view
 </template>
 
 <script>
 	export default {
 		name: 'App',
+		beforeCreate() {
+			if (!this.dataService.user.loggedIn) {
+				this.$router.push('/login');
+			}
+		}
 	};
 </script>
+
+<style lang="scss" scoped>
+	.logo {
+		width        : 24px;
+		height       : 24px;
+		margin-right : 16px;
+	}
+</style>

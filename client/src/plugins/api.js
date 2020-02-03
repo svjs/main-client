@@ -22,6 +22,6 @@ export function ApiPlugin(Vue, settings) {
 		};
 	}
 
-	window.api = api;
+	if (settings.development) window.api = api;
 	Vue.prototype.api = api;
 }
