@@ -10,7 +10,6 @@ export class AppGateway {
 
 	@SubscribeMessage('message')
 	async handleMessage(client: Socket): Promise<string> {
-		console.log('Haha, hohoh');
 		return this.appService.getHello();
 	}
 }
