@@ -9,9 +9,9 @@
 <script>
 	export default {
 		name: 'App',
-		beforeCreate() {
+		async beforeCreate() {
 			if (!this.dataService.user.loggedIn) {
-				this.$router.push('/login');
+				return this.$router.push('/login');
 			}
 		}
 	};

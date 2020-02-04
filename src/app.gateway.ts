@@ -1,6 +1,9 @@
 import {SubscribeMessage, WebSocketGateway} from '@nestjs/websockets';
 import {Socket} from "socket.io";
 import {AppService} from "./app.service";
+import {EVENTS} from '../constants';
+
+console.log(EVENTS);
 
 @WebSocketGateway()
 export class AppGateway {
@@ -8,8 +11,8 @@ export class AppGateway {
 	constructor(private readonly appService: AppService) {
 	}
 
-	@SubscribeMessage('message')
-	async handleMessage(client: Socket): Promise<string> {
-		return this.appService.getHello();
+	@SubscribeMessage(EVENTS.AUTH.GET)
+	async handleMessage(client: Socket): Promise<Object> {
+		return {};
 	}
 }

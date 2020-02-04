@@ -3,7 +3,7 @@ import App from './App.vue';
 import router from './router';
 import vuetify from './plugins/vuetify';
 import {ApiPlugin} from './plugins/api';
-import DataServicePlugin from './plugins/data-service';
+import {DataServicePlugin, dataService} from './plugins/data-service';
 
 Vue.config.productionTip = false;
 
@@ -13,6 +13,10 @@ Vue.use(ApiPlugin, {
 Vue.use(DataServicePlugin, {
 	development: true
 });
+
+(async () => {
+	await dataService.init();
+})();
 
 new Vue({
 	router,
