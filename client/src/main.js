@@ -16,10 +16,11 @@ Vue.use(DataServicePlugin, {
 
 (async () => {
 	await dataService.init();
+
+	new Vue({
+		router,
+		vuetify,
+		render: h => h(App)
+	}).$mount('#app');
 })();
 
-new Vue({
-	router,
-	vuetify,
-	render: h => h(App)
-}).$mount('#app');

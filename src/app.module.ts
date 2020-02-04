@@ -13,7 +13,7 @@ import {join} from 'path';
 				name: 'USER_SERVICE',
 				transport: Transport.TCP,
 				options: {
-					port: 3001
+					port: 9092
 				}
 			}
 		]),

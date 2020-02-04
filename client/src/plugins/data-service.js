@@ -6,12 +6,17 @@ const dataService = new Vue({
 		return {
 			user: {
 				loggedIn: false,
+				id      : null
 			}
 		};
 	},
 	methods: {
 		async init() {
-			this.user.loggedIn = await api.emit(EVENTS.AUTH.GET);
+			const authInfo = await api.emit(EVENTS.AUTH.GET);
+			this.user.loggedIn = authInfo.loggedIn;
+			if (!this.user.loggedIn) return;
+
+			this.user.id = authInfo.info.id;
 		}
 	}
 });

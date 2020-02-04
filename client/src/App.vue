@@ -10,7 +10,7 @@
 	export default {
 		name: 'App',
 		async beforeCreate() {
-			if (!this.dataService.user.loggedIn) {
+			if (!this.dataService.user.loggedIn && this.$route.path !== '/login') {
 				return this.$router.push('/login');
 			}
 		}

@@ -4,17 +4,43 @@
 			.login-card__logo.elevation-3: img(src="@/assets/logo.svg")
 			v-card-text
 				v-layout(column)
-					v-text-field(placeholder="Username")
-					v-text-field(placeholder="Password")
+					v-text-field(placeholder="Username" v-model="login" autofocus)
+					v-text-field(placeholder="Password" type="password" v-model="password" @keydown="onEnterLogin")
 			v-card-actions
 				v-spacer
-				v-btn.login-button Login
+				v-btn.login-button(@click="doLogin") Login
 				v-spacer
 </template>
 
 <script>
+	import {EVENTS} from '../plugins/api';
+	import forge from 'node-forge';
+
 	export default {
-		name: 'Login'
+		name   : 'Login',
+		data() {
+			return {
+				login   : '',
+				password: ''
+			};
+		},
+		methods: {
+			onEnterLogin(e) {
+				if (e.key === 'Enter') {
+					this.doLogin();
+				}
+			},
+			async doLogin() {
+
+				const md = forge.md.sha256.create();
+				md.update(this.password);
+
+				const result = await this.api.emit(EVENTS.AUTH.DO, {
+					login   : this.login,
+					password: md.digest().toHex()
+				});
+			}
+		}
 	};
 </script>
 
