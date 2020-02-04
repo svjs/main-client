@@ -7,9 +7,9 @@
 					v-text-field(placeholder="Username" v-model="login" autofocus)
 					v-text-field(placeholder="Password" type="password" v-model="password" @keydown="onEnterLogin")
 			v-card-actions
-				v-spacer
 				v-btn.login-button(@click="doLogin") Login
 				v-spacer
+				v-btn.login-button(@click="doRegister") Register
 </template>
 
 <script>
@@ -30,11 +30,20 @@
 					this.doLogin();
 				}
 			},
-			async doLogin() {
-
+			gatherData() {
 				const md = forge.md.sha256.create();
 				md.update(this.password);
 
+				return {
+					login   : this.login,
+					password: md.digest().toHex()
+				};
+			},
+			async doRegister() {
+				const result = await this.api.emit(EVENTS.AUTH.NEW_USER, this.gatherData());
+				if (!result.error) window.location = '/';
+			},
+			async doLogin() {
 				const result = await this.api.emit(EVENTS.AUTH.DO, {
 					login   : this.login,
 					password: md.digest().toHex()
@@ -52,7 +61,7 @@
 	}
 
 	.login-button {
-		width : 250px;
+		width : calc(50% - 8px);
 	}
 
 	.login-card__logo {
@@ -79,7 +88,7 @@
 		}
 
 		.login-button {
-			width : 100%;
+			width : calc(50% - 8px);
 		}
 
 	}

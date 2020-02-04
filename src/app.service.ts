@@ -21,14 +21,17 @@ export class AppService {
 		return output;
 	}
 
-	async authGet(headers: { cookie: string }): Promise<{ loggedIn: boolean, info?: {} }> {
-		const cookie = this.parseCookie(headers.cookie);
-		const result = await this.userService.send<{ loggedIn: boolean }>({cmd: 'auth.get'}, cookie);
-		return result.toPromise();
+	async authGet(): Promise<true> {
+		return true;
 	}
 
 	async authDo(data: { login: string, password: string }): Promise<boolean> {
 		const result = await this.userService.send<boolean>({cmd: 'auth.do'}, data);
 		return result.toPromise();
+	}
+
+	async authNewUser(data: { login: string, password: string }): Promise<boolean | { error: string }> {
+		const res = await this.userService.send<boolean | { error: string }>({cmd: 'auth.new-user'}, data);
+		return res.toPromise();
 	}
 }

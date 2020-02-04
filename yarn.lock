@@ -1803,6 +1803,13 @@ concat-stream@^1.5.0, concat-stream@^1.5.2:
     readable-stream "^2.2.2"
     typedarray "^0.0.6"
 
+connect-loki@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/connect-loki/-/connect-loki-1.1.0.tgz#21e475dda3c148229a2db86f57d11d42db83ebd3"
+  integrity sha512-JQ4Ueh7m1/I+E+DvzOpyZSCjTJZetKy7Zob8C8ly2ecH7TmC4puYz0y8s8/jyJbVGdjuDyQOxcf82NEl0tOmvg==
+  dependencies:
+    lokijs "^1.5.0"
+
 consola@^2.3.0:
   version "2.11.3"
   resolved "https://registry.yarnpkg.com/consola/-/consola-2.11.3.tgz#f7315836224c143ac5094b47fd4c816c2cd1560e"
@@ -4281,6 +4288,11 @@ log-symbols@^3.0.0:
   integrity sha512-dSkNGuI7iG3mfvDzUuYZyvk5dD9ocYCYzNU6CYDE6+Xqd+gwme6Z00NS3dUh8mq/73HaEtT7m6W+yUPtU6BZnQ==
   dependencies:
     chalk "^2.4.2"
+
+lokijs@^1.5.0:
+  version "1.5.8"
+  resolved "https://registry.yarnpkg.com/lokijs/-/lokijs-1.5.8.tgz#9296f288edb2147389ec692fc972c428c59179d1"
+  integrity sha512-D8E3TBrY35o1ELnonp2MF8b3wKu2tVNl2TqRjvS+95oPMMe7OoIAxNY1qr+5BEZwnWn2V4ErAjVt000DonM+FA==
 
 loose-envify@^1.0.0:
   version "1.4.0"
