@@ -2,8 +2,8 @@ import {SubscribeMessage, WebSocketGateway} from '@nestjs/websockets';
 import {Socket} from "socket.io";
 import {AppService} from "./app.service";
 import {EVENTS} from '../constants';
+import {createParamDecorator} from "@nestjs/common";
 
-console.log(EVENTS);
 
 @WebSocketGateway()
 export class AppGateway {
@@ -12,7 +12,9 @@ export class AppGateway {
 	}
 
 	@SubscribeMessage(EVENTS.AUTH.GET)
-	async authGet(client: Socket): Promise<{ loggedIn: boolean, info?: {} }> {
+	async authGet(client: any): Promise<{ loggedIn: boolean, info?: {} }> {
+		console.log('A', client);
+
 		return this.appService.authGet(client.handshake.headers);
 	}
 
