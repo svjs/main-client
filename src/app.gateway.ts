@@ -2,8 +2,6 @@ import {SubscribeMessage, WebSocketGateway} from '@nestjs/websockets';
 import {Socket} from "socket.io";
 import {AppService} from "./app.service";
 import {EVENTS} from '../constants';
-import {createParamDecorator} from "@nestjs/common";
-
 
 @WebSocketGateway()
 export class AppGateway {
